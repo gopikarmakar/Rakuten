@@ -11,7 +11,7 @@ import java.io.IOException
  */
 class HttpClient {
 
-    public fun request(url: String){
+    public fun request(url: String, callback: ResponseCallback){
 
         val request = Request.Builder().url(url).build()
         val client = OkHttpClient()
@@ -24,17 +24,17 @@ class HttpClient {
                 
                 val gson = GsonBuilder().create()
                 val items = gson.fromJson(body, Items::class.java)
-                Log.d("Rakuten", items.toString())
+                callback.onSuccess(items)
             }
 
             override fun onFailure(call: Call, e: IOException) {
-                Log.d("Rakuten","Failed to execute")
+                callback.onFailure("Failed to execute")
             }
         })
     }
 }
 
-private class Items(val items: List<Data>) {
+public class Items(val items: List<Data>) {
 
     override fun toString(): String {
         var message: String = ""
@@ -46,4 +46,9 @@ private class Items(val items: List<Data>) {
     }
 }
 
-private class Data(val name: String, val privacy: Boolean, val description: String, val language: String)
+public class Data(val name: String, val privacy: Boolean, val description: String, val language: String)
+
+public interface ResponseCallback {
+    fun onSuccess(items: Items?)
+    fun onFailure(msg: String)
+}

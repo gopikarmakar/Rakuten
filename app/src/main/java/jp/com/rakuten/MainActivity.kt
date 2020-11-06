@@ -8,8 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import jp.com.httpclient.HttpClient
+import jp.com.httpclient.Items
+import jp.com.httpclient.ResponseCallback
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ResponseCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +25,15 @@ class MainActivity : AppCompatActivity() {
 
         val url = "https://api.github.com/search/repositories?q=android+org:rakutentech"
         val httpClient = HttpClient()
-        httpClient.request(url)
+        httpClient.request(url, this)
+    }
+
+    override fun onFailure(msg: String) {
+        Log.d("Rakuten", msg)
+    }
+
+    override fun onSuccess(items: Items?) {
+        Log.d("Rakuten", items?.toString())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
