@@ -11,7 +11,6 @@ import java.io.IOException
  */
 class HttpClient {
 
-
     public fun request(url: String){
 
         val request = Request.Builder().url(url).build()
