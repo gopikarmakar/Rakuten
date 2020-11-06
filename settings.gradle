@@ -1,0 +1,3 @@
+include ':HttpClient'
+include ':app'
+rootProject.name = "Rakuten"
