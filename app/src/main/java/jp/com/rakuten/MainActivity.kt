@@ -1,11 +1,13 @@
 package jp.com.rakuten
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import jp.com.httpclient.HttpClient
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,6 +20,10 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
+
+        val url = "https://api.github.com/search/repositories?q=android+org:rakutentech"
+        val httpClient = HttpClient()
+        val items = httpClient.request(url)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
