@@ -20,7 +20,8 @@ class HttpClient {
 
             override fun onResponse(call: Call, response: Response) {
                 val body = response?.body()?.string()
-
+                Log.d("Rakuten", body)
+                
                 val gson = GsonBuilder().create()
                 val items = gson.fromJson(body, Items::class.java)
                 Log.d("Rakuten", items.toString())
