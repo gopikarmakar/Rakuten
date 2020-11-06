@@ -24,7 +24,7 @@ class HttpClient {
                 
                 val gson = GsonBuilder().create()
                 val items = gson.fromJson(body, Items::class.java)
-                callback.onSuccess(items)
+                callback.onSuccess(items!!)
             }
 
             override fun onFailure(call: Call, e: IOException) {
