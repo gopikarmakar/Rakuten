@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         val url = "https://api.github.com/search/repositories?q=android+org:rakutentech"
         val httpClient = HttpClient()
-        val items = httpClient.request(url)
+        httpClient.request(url)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
