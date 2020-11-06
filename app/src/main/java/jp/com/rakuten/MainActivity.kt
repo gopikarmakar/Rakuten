@@ -32,8 +32,12 @@ class MainActivity : AppCompatActivity(), ResponseCallback {
         Log.d("Rakuten", msg)
     }
 
-    override fun onSuccess(items: Items?) {
-        Log.d("Rakuten", items?.toString())
+    override fun onSuccess(response: Items?) {
+        response?.run {
+            response?.items?.forEach {
+                Log.d("Rekuten", it.toString())
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

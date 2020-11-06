@@ -24,7 +24,7 @@ class HttpClient {
                 
                 val gson = GsonBuilder().create()
                 val items = gson.fromJson(body, Items::class.java)
-                callback.onSuccess(items!!)
+                callback.onSuccess(items)
             }
 
             override fun onFailure(call: Call, e: IOException) {
@@ -34,21 +34,17 @@ class HttpClient {
     }
 }
 
-public class Items(val items: List<Data>) {
+class Items(val items: List<Data>)
+
+class Data(val name: String, val privacy: Boolean, val description: String, val language: String) {
 
     override fun toString(): String {
-        var message: String = ""
-        items.forEach {
-            message = "Name = " + it.name + "\n" + " Privacy Status = " + it.privacy + "\n" +
-                    " Description = " + it.description + "\n" + " Language = " + it.language
-        }
-        return message
+        return "Name = " + name + " Privacy Status = " + privacy + " " +
+                " Description = " + description + " " + " Language = " + language
     }
 }
 
-public class Data(val name: String, val privacy: Boolean, val description: String, val language: String)
-
-public interface ResponseCallback {
-    fun onSuccess(items: Items?)
+interface ResponseCallback {
+    fun onSuccess(response: Items?)
     fun onFailure(msg: String)
 }
