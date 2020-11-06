@@ -1,5 +1,4 @@
-# Kotlin Project
-Rakuten MTSD Test
+# Rakuten MTSD Test Kotlin Project
 
 1: Receiving an URL to make a request and printing the response data.
 
