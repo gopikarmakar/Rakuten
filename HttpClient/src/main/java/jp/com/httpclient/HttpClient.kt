@@ -11,6 +11,10 @@ import java.io.IOException
  */
 class HttpClient {
 
+    companion object {
+        val TAG: String = "Rakuten"
+    }
+
     public fun request(url: String, callback: ResponseCallback){
 
         val request = Request.Builder().url(url).build()
@@ -20,7 +24,7 @@ class HttpClient {
 
             override fun onResponse(call: Call, response: Response) {
                 val body = response?.body()?.string()
-                Log.d("Rakuten", body)
+                Log.d(TAG, body)
                 
                 val gson = GsonBuilder().create()
                 val items = gson.fromJson(body, Items::class.java)

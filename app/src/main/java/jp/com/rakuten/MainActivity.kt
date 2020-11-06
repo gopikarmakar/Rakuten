@@ -13,6 +13,10 @@ import jp.com.httpclient.ResponseCallback
 
 class MainActivity : AppCompatActivity(), ResponseCallback {
 
+    companion object {
+        val TAG: String = "Rakuten"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,13 +33,13 @@ class MainActivity : AppCompatActivity(), ResponseCallback {
     }
 
     override fun onFailure(msg: String) {
-        Log.d("Rakuten", msg)
+        Log.d(TAG, msg)
     }
 
     override fun onSuccess(response: Items?) {
         response?.run {
             response?.items?.forEach {
-                Log.d("Rekuten", it.toString())
+                Log.d(TAG, it.toString())
             }
         }
     }
