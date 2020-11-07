@@ -17,7 +17,7 @@ import jp.com.httpclient.ResponseCallback
 class MainActivity : AppCompatActivity(), ResponseCallback {
 
     companion object {
-        val TAG: String = "Rakuten"
+        const val TAG: String = "Rakuten"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
