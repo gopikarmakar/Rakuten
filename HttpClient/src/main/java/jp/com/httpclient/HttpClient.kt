@@ -38,7 +38,7 @@ object HttpClient {
     }
 
     /**
-     * Making network communications and parsing JSON
+     * Asynchronously making network communications and parsing JSON
      */
     private suspend fun fetch(url: String, callback: ResponseCallback) {
 
@@ -55,6 +55,8 @@ object HttpClient {
 
                     val gson = GsonBuilder().create()
                     val items = gson.fromJson(body, Items::class.java)
+
+                    //Publishing response to the subscriber
                     callback.onSuccess(items)
                 }
 
