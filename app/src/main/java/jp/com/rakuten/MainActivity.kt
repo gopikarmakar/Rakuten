@@ -30,14 +30,23 @@ class MainActivity : AppCompatActivity(), ResponseCallback {
                     .setAction("Action", null).show()
         }
 
+        /**
+         * Requesting the url with the HttpClient module
+         */
         val url = "https://api.github.com/search/repositories?q=android+org:rakutentech"
         HttpClient.request(url, this)
     }
 
+    /**
+     * Receives onFailure callback
+     */
     override fun onFailure(msg: String) {
         Log.d(TAG, msg)
     }
 
+    /**
+     * Receives list of response params onSuccess callback
+     */
     override fun onSuccess(response: Items?) {
         response?.run {
             this?.items?.forEach {
