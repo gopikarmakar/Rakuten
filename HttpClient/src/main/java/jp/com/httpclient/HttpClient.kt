@@ -16,7 +16,7 @@ import java.io.IOException
  */
 object HttpClient {
 
-    const val TAG: String = "Rakuten"
+    private const val TAG: String = "Rakuten"
 
     private val scope = CoroutineScope(Job() + Dispatchers.IO)
 
