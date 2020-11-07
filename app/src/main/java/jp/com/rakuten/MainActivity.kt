@@ -11,6 +11,9 @@ import jp.com.httpclient.HttpClient
 import jp.com.httpclient.Items
 import jp.com.httpclient.ResponseCallback
 
+/**
+ * MainActivity accessing HttpClient module.
+ */
 class MainActivity : AppCompatActivity(), ResponseCallback {
 
     companion object {
@@ -28,8 +31,7 @@ class MainActivity : AppCompatActivity(), ResponseCallback {
         }
 
         val url = "https://api.github.com/search/repositories?q=android+org:rakutentech"
-        val httpClient = HttpClient()
-        httpClient.request(url, this)
+        HttpClient.request(url, this)
     }
 
     override fun onFailure(msg: String) {
@@ -38,7 +40,12 @@ class MainActivity : AppCompatActivity(), ResponseCallback {
 
     override fun onSuccess(response: Items?) {
         response?.run {
-            response?.items?.forEach {
+            this?.items?.forEach {
+
+                val msg = "Name = " + it.name + " Privacy Status = " + it.privacy + " " +
+                        " Description = " + it.description + " " + " Language = " + it.language
+
+                //Log.d(TAG, msg)
                 Log.d(TAG, it.toString())
             }
         }
