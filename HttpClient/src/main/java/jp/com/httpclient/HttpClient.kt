@@ -78,7 +78,7 @@ class Items(
 /**
  * Response Parameters
  */
-class Data(
+data class Data(
     val name: String,
     val privacy: Boolean,
     val description: String,
